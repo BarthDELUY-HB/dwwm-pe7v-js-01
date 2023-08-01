@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+function sayMessage(msg)
+{
+    console.log(msg);
+}
+
+function sayHello()
+{
+    sayMessage("Début du programme 'Date valide'");
+}
+function sayGoodbye()
+{
+    sayMessage("Fin du programme 'Date valide'");
+}
+
+function isYearValid(year)
+{
+    if (year < 1) {
+        return false;
+    }
+    return true;
+}
+
+function isMonthValid(month)
+{
+    if (month < 1 || month > 12) {
+        return false;
+    }
+    return true;
+}
+
+function canBeDividedBy(nb, divisor)
+        {
+            if (nb%divisor === 0) {
+                return true;
+            }
+            return false;
+        }
+
+        function canBeDividedBy4(nb)
+        {
+            return canBeDividedBy(nb, 4);
+        }
+        function canBeDividedBy400(nb)
+        {
+            return canBeDividedBy(nb, 400);
+        }
+        function canBeDividedBy100(nb)
+        {
+            return canBeDividedBy(nb, 100);
+        }
+
+        function isLeapYear(year)
+        {
+            if (canBeDividedBy400(year)) {
+                return true;
+            }
+            if (canBeDividedBy4(year) && !canBeDividedBy100(year)) {
+                return true;
+            }
+
+            return false;
+        }
+
+
+/*
+Méthode détaillée : on fait tous les cas possibles
+
+function isMonth30Days(month)
+{
+    if (month == 4 || month == 6 || month == 9 || month == 11) {
+        return true;
+    }
+    return false;
+}
+
+function isDayValid(year, month, day)
+{
+    if (day > 31 || day < 1) {
+        return false;
+    }
+    if (isMonth30Days(month) && day > 30) {
+        return false;
+    }
+    if (month ==2) {
+        if (isLeapYear(year)) {
+            if (day > 29) {
+                return false;
+            }
+        } else {
+            if (day > 28) {
+                return false
+            }
+        }
+    }
+    return true;
+}
+*/
+
+/* Version retravaillée pour que tous les isXXXValid() se ressemblent */
+function daysInMonth(year, month, day)
+{
+    if (month == 4 || month == 6 || month == 9 || month == 11) {
+        return 30;
+    }
+    if (month == 2) {
+        if (isLeapYear(year)) {
+            return 29;
+        } else {
+            return 28;
+        }
+    }
+    return 31;
+}
+
+
+function isDayValid(year, month, day)
+{
+    if (day < 1 || day > daysInMonth(year, month)) {
+        return false;
+    }
+    return true;
+}
+
+function isDateValid(year, month, day)
+{
+    /* CE 1 */
+    if (!isYearValid(year)) {
+        return false;
+    }
+    /* CE 2 */
+    if (!isMonthValid(month)) {
+        return false;
+    }
+    if (!isDayValid(year, month, day)) {
+        return false;
+    }
+    return true;
+}
+
+
+
+/*
+    CN 1 : date valide
+    CN 2 : un 29 février valide
+    CE 1 : année invalide
+    CE 2a : mois invalide < 1
+    CE 2b : mois > 12
+    CE 3 : jour > 31
+    CE 4 : jour = 31 dans un mois à 30
+    CE 5 : février et jour > 30
+    CE 6 : février et jour = 29 et pas bissextile
+    CE 7 : jour < 1
+*/
+function main()
+{
+    sayHello();
+    /* CN 1 */
+    console.log( "2023-07-14 : " + isDateValid(2023, 7, 14));
+    /* CN 2 */
+    console.log( "2024-02-29 : " + isDateValid(2024, 2, 9));
+    /* CE 1 */
+    console.log( "0-07-14 : " + isDateValid(0, 7, 14));
+    /* CE 2a */
+    console.log( "2023-0-14 : " + isDateValid(2023, 0, 14));
+    /* CE 2b */
+    console.log( "2023-14-14 : " + isDateValid(2023, 14, 14));
+    /* CE 3 */
+    console.log( "2023-07-67 : " + isDateValid(2023, 7, 67));
+    /* CE 4 */
+    console.log( "2023-06-31 : " + isDateValid(2023, 6, 31));
+    /* CE 5 */
+    console.log( "2024-02-30 : " + isDateValid(2024, 2, 30));
+    /* CE 6 */
+    console.log( "2023-02-29 : " + isDateValid(2023, 2, 29));
+    /* CE 7 */
+    console.log( "2023-02-0 : " + isDateValid(2023, 2, 0));
+
+    sayGoodbye();
+}
+
+main();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
