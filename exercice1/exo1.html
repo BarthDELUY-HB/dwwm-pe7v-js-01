@@ -4,6 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        function sayMessage(msg)
+        {
+            console.log(msg);
+        }
+
+        function sayHello()
+        {
+            sayMessage("Début du programme 'Année bissextile'");
+        }
+
+        function sayGoodbye()
+        {
+            sayMessage("Fin du programme 'Année bissextile'");
+        }
+
+        function canBeDividedBy(nb, divisor)
+        {
+            if (nb%divisor === 0) {
+                return true;
+            }
+            return false;
+        }
+
+        function canBeDividedBy4(nb)
+        {
+            return canBeDividedBy(nb, 4);
+        }
+        function canBeDividedBy400(nb)
+        {
+            return canBeDividedBy(nb, 400);
+        }
+        function canBeDividedBy100(nb)
+        {
+            return canBeDividedBy(nb, 100);
+        }
+
+        function isLeapYear(year)
+        {
+            if (canBeDividedBy400(year)) {
+                return true;
+            }
+            if (canBeDividedBy4(year) && !canBeDividedBy100(year)) {
+                return true;
+            }
+
+            return false;
+        }
+
+        function main()
+        {
+            sayHello();
+            console.log( "2023 : " + isLeapYear(2023));
+            console.log( "2000 : " + isLeapYear(2000));
+            console.log( "2004 : " + isLeapYear(2004));
+            console.log( "2100 : " + isLeapYear(2100));
+            sayGoodbye();
+        }
+
+        main();
+    </script>
 </head>
 <body>
     
