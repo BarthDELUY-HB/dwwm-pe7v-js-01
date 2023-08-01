@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        function sayMessage(msg)
+        {
+            alert(msg);
+        }
+
+        function sayHello()
+        {
+            sayMessage("Bonjour, le monde!");
+        }
+
+        function sayGoodbye()
+        {
+            sayMessage("Au revoir, le monde!");
+        }
+
+        function isEven(nb)
+        {
+            let msg = "Le nombre " + nb + " est ";
+            let even = "";
+            if (nb%2 === 0) {
+                even = "pair";
+            } else {
+                even = "impair";
+            }
+            console.log(msg + even);
+        }
+
+        function countdown(nb)
+        {
+            while (nb >= 0) {
+                console.log(nb);
+                nb = nb - 1;
+            }
+        }
+
+        function main()
+        {
+            sayHello();
+            isEven(2);
+            isEven(3);
+            countdown(10);
+            sayGoodbye();
+        }
+
+        main();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
