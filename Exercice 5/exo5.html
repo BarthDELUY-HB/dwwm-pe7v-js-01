@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function weightedAverage(tab)
+        {
+            let sumMarks = 0;
+            let sumWeights = 0;
+
+            let i = 0;
+            while (i < tab.length) {
+                sumMarks = sumMarks + (tab[i][0]*tab[i][1]);
+                sumWeights = sumWeights + tab[i][1];
+                i++;
+            }
+
+            return sumMarks/sumWeights;
+        }
+
+        let notes = [
+            [15, 2],
+            [12, 4],
+            [7, 1],
+            [13, 5]
+        ];
+        /*
+        moyenne = (15x2 + 12x4 + 7x1 + 13x5)/(2+4+1+5)
+        */
+        console.log("Moyenne pondérée : " + weightedAverage(notes));
+
+
+    </script>
+</body>
+</html>
