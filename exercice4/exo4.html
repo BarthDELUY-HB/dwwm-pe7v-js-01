@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        console.log("Début exo4");
+
+        function tabAVG(tab)
+        {
+            let avg = 0;
+
+            let i = 0;
+            while (i < tab.length) {
+                /* on fait la somme des valeurs contenues dans le tableau */
+                avg = avg + tab[i];
+                i++;
+            }
+
+            return (avg/tab.length);
+        }
+
+
+        let tableau = [12, 15];
+        tableau.push(15);
+        
+        let moyenne = tabAVG(tableau);
+        console.log("Moyenne du tableau : " + moyenne);
+
+
+
+        let tableau2d = [
+            ["Armand", "Antoine"],
+            ["Zélie", "Zoé"]
+        ];
+        console.log(tableau2d);
+        console.log("Le plus beau prénom du monde : " + tableau2d[1][0]);
+
+
+
+
+
+
+
+
+
+
+
+
+        let i = 0;
+
+        while (i < tableau.length) {
+            /* code à répéter */
+            console.log(`La case ${i} contient la valeur ${tableau[i]}`);
+            console.log("La case " + i + " contient la valeur " + tableau[i]);
+
+            /* code qui fait évoluer la condition pour ne pas avoir une boucle infinie */
+            i++; /* i = i+1 */
+        }
+
+
+
+
+    </script>
+
+</body>
+</html>

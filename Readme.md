@@ -58,7 +58,6 @@ Une fonction doit **TOUJOURS** retourner une valeur.
 
 **Bonne pratique :** la dernière ligne d'une fonction est un `return` avec une valeur par défaut pour la fonction.
 
-
 ## Les structures de contrôle
 
 ### Les conditions avec le SI
@@ -69,7 +68,7 @@ if (condition) {
 }
 ```
 
-La version avec le SINON : 
+La version avec le SINON :
 
 ```js
 if (condition) {
