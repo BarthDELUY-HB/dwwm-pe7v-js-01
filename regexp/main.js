@@ -26,16 +26,33 @@ function checkContainsDigit(event)
 }
 function checkContainsUppercase(event)
 {
+    const regex = /[A-Z]/;
+    const pUpper = document.querySelector('.majus');
+    if(regex.test(event.target.value)){
+        pUpper.classList.replace('error', 'ok');
+        return true;
+    }
+    pUpper.classList.replace('ok', 'error');
+    return false;
+}
 
+function checkFormConstraints(event)
+{
+    let hasDigits = checkContainsDigit(event);
+    let hasUppercase = checkContainsUppercase(event);
+    let isLongEnough = checkLength(event);
+    if (hasDigits && hasUppercase && isLongEnough) {
+        document.querySelector('#sub').removeAttribute('disabled');
+        return true;
+    }
+    document.querySelector('#sub').setAttribute('disabled', 'disabled');
     return false;
 }
 
 function main()
 {
     const field = document.querySelector('#password');
-    field.addEventListener('input', checkContainsDigit);
-    field.addEventListener('input', checkContainsUppercase);
-    field.addEventListener('input', checkLength);
+    field.addEventListener('input', checkFormConstraints);
 }
 
 window.addEventListener('load', main);
