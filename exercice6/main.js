@@ -5,6 +5,15 @@ function logSubmit(event) {
     event.preventDefault();
 
     // Validation que le mot de passe et sa confirmation sont bien identiques
+    let password = document.querySelector('#motdepasse').value;
+    let confirmation = document.querySelector('#confirmation_motdepasse').value;
+
+    if (password.localeCompare(confirmation) === 0) {
+        console.log('Les mots de passe sont identiques');
+        return true;
+    }
+    console.log('Les mots de passe sont différents');
+    return false;
 }
 
 function main()

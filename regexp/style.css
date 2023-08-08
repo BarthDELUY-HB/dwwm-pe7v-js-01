@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.error {
+    color: red;
+}
+.error::before {
+  content: "❌ ";
+}
+.ok {
+    color: green;
+}
+.ok::before {
+    content: "✅ ";
+}
