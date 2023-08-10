@@ -18,7 +18,6 @@ function convertFilmListToHTML(films) {
 
     let tbody = generateFilmTBody(films);
 
-
     table.appendChild(thead);
     table.appendChild(tbody);
 
