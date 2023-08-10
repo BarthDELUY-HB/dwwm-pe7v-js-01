@@ -23,10 +23,6 @@ function generateFilmHeaderRow() {
     return thead;
 }
 
-function directorToString(director) {
-    return director.name + ", " + director.firstname;
-}
-
 function generateFilmDataRow(film) {
     let attributes = ['id', 'title', 'date', 'duration', 'director', 'genre', 'studio'];
 
@@ -37,7 +33,7 @@ function generateFilmDataRow(film) {
         let td = document.createElement('td');
         td.textContent = film[attributes[i]];
         if (attributes[i] == 'director') {
-            td.textContent = directorToString(film.director);
+            td.textContent = film.director.toString();
         }
         tr.appendChild(td);
         i++;
@@ -71,8 +67,8 @@ function convertFilmListToHTML(films) {
     return table;
 }
 
-
-window.addEventListener('load', function () {
+function buildFilmList()
+{
     let films = [];
     let titanic = new Film ();
     titanic.id = 1;
@@ -99,31 +95,36 @@ window.addEventListener('load', function () {
     supermario.studio = "Nintendo";
     films.push(supermario);
     let narnia = new Film ();
-        narnia.id = 4;
-        narnia.title = "Narnia";
-        narnia.date = 2005;
-        narnia.duration = "2h12";
-        director = new Person();
-        director.name = "Adamson";
-        director.firstname = "Andrew";
-        narnia.director = director;
-        narnia.genre = "Heroic Fantasy";
-        narnia.studio = "Paramount";
+    narnia.id = 4;
+    narnia.title = "Narnia";
+    narnia.date = 2005;
+    narnia.duration = "2h12";
+    director = new Person();
+    director.name = "Adamson";
+    director.firstname = "Andrew";
+    narnia.director = director;
+    narnia.genre = "Heroic Fantasy";
+    narnia.studio = "Paramount";
     films.push(narnia);
     let marioBros = new Film ();
-        marioBros.id = 3;
-        marioBros.title = "marioBros";
-        marioBros.date = 1994;
-        marioBros.duration = "1h24";
-        director = new Person();
-        director.name = "John";
-        director.firstname = "Doe";
-        marioBros.director = director;
-        marioBros.genre = "Nanard";
-        marioBros.studio = "Paramount";
+    marioBros.id = 3;
+    marioBros.title = "marioBros";
+    marioBros.date = 1994;
+    marioBros.duration = "1h24";
+    director = new Person();
+    director.name = "John";
+    director.firstname = "Doe";
+    marioBros.director = director;
+    marioBros.genre = "Nanard";
+    marioBros.studio = "Paramount";
     films.push(marioBros);
 
-    console.log(films);
+    return films;
+}
+
+window.addEventListener('load', function () {
+
+    const films = buildFilmList();
 
     let htmlTable = convertFilmListToHTML(films);
     document.querySelector('body').appendChild(htmlTable);
