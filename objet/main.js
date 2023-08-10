@@ -1,52 +1,10 @@
 "use strict";
 
-function generateFilmHeaderRow() {
-    let headers = ['Id', 'Titre', 'Année', 'Durée', 'Réalisateur', 'Genre', 'Studio'];
-
-    // Création des éléments HTML dont on va avoir besoin
-    let thead = document.createElement('thead');
-    let tr = document.createElement('tr');
-
-    // On parcourt la liste des en-têtes, on crée les éléments TH correspondants
-    // puis on les rattache au tr
-    let i = 0;
-    while (i < headers.length) {
-        let th = document.createElement('th');
-        th.textContent = headers[i];
-        tr.appendChild(th);
-        i++;
-    }
-
-    // On rattache le tr au thead
-    thead.appendChild(tr);
-
-    return thead;
-}
-
-function generateFilmDataRow(film) {
-    let attributes = ['id', 'title', 'date', 'duration', 'director', 'genre', 'studio'];
-
-    let tr = document.createElement('tr');
-
-    let i = 0;
-    while (i < attributes.length) {
-        let td = document.createElement('td');
-        td.textContent = film[attributes[i]];
-        if (attributes[i] == 'director') {
-            td.textContent = film.director.toString();
-        }
-        tr.appendChild(td);
-        i++;
-    }
-
-    return tr;
-}
-
 function generateFilmTBody(films) {
     let tbody = document.createElement('tbody');
     let i = 0;
     while (i < films.length) {
-        let tr = generateFilmDataRow(films[i]);
+        let tr = films[i].toHTMLTableRow();
         tbody.appendChild(tr);
         i++;
     }
@@ -56,7 +14,7 @@ function generateFilmTBody(films) {
 function convertFilmListToHTML(films) {
     let table = document.createElement('table');
 
-    let thead = generateFilmHeaderRow();
+    let thead = films[0].toHTMLTableHeader();
 
     let tbody = generateFilmTBody(films);
 
