@@ -28,39 +28,21 @@ function directorToString(director) {
 }
 
 function generateFilmDataRow(film) {
+    let attributes = ['id', 'title', 'date', 'duration', 'director', 'genre', 'studio'];
+
     let tr = document.createElement('tr');
-    let td = document.createElement('td');
-    td.textContent = film.id;
-    tr.appendChild(td);
-    td = document.createElement('td');
-    td.textContent = film.title;
-    tr.appendChild(td);
-    td = document.createElement('td');
-    td.textContent = film.date;
-    tr.appendChild(td);
-    td = document.createElement('td');
-    td.textContent = film.duration;
-    tr.appendChild(td);
-    td = document.createElement('td');
-    td.textContent = directorToString(film.director);
-    tr.appendChild(td);
-    td = document.createElement('td');
-    td.textContent = film.genre;
-    tr.appendChild(td);
-    td = document.createElement('td');
-    td.textContent = film.studio;
-    tr.appendChild(td);
 
-
-    /*
     let i = 0;
-    while (i < film.length) {
+    while (i < attributes.length) {
         let td = document.createElement('td');
-        td.textContent = film[i];
+        td.textContent = film[attributes[i]];
+        if (attributes[i] == 'director') {
+            td.textContent = directorToString(film.director);
+        }
         tr.appendChild(td);
         i++;
     }
-    */
+
     return tr;
 }
 
@@ -91,53 +73,55 @@ function convertFilmListToHTML(films) {
 
 
 window.addEventListener('load', function () {
-    const films = [
-        {
-            id: 1,
-            title: "Titanic",
-            date: 1999,
-            duration: "3h17",
-            director: { 
-                name: "Cameron",
-                firstname: "James"
-            },
-            genre: "Historique",
-            studio: "20th Century"
-        },
-        {
-            id: 2,
-            title:"SuperMario",
-            date: 2023,
-            duration:"1h49",
-            director:{name:"Kojima", firstname:"Ideo"},
-            genre:"Jeu vidéo",
-            studio:"Nintendo"
-        },
-        {
-            id: 3, 
-            title: "Marios Bros",
-            date: 1994,
-            duration: "1h24",
-            director: {
-                name: "Doe",
-                firstname: "John"
-            },
-            genre: "Nanard",
-            studio: "Paramount"
-        },
-        {
-            id: 4, 
-            title:"Narnia", 
-            date: 2005,
-            duration: "2h12",
-            director : {
-                name: "Adamson", 
-                firstname: "Andrew"
-            }, 
-            genre:"Heroic Fantaisy",
-            studio: "Paramount"
-        },
-    ];
+    let films = [];
+    let titanic = new Film ();
+    titanic.id = 1;
+    titanic.title = "Titanic";
+    titanic.date = 1999;
+    titanic.duration = "3h17";
+    let director = new Person();
+    director.name = "Cameron";
+    director.firstname = "James";
+    titanic.director = director;
+    titanic.genre = "Historique";
+    titanic.studio = "20th Century";
+    films.push(titanic);
+    let supermario = new Film ();
+    supermario.id = 2;
+    supermario.title = "SuperMario";
+    supermario.date = 2023;
+    supermario.duration = "1h49";
+    director = new Person ();
+    director.name = "Kojima" ;
+    director.firstname = "Ideo";
+    supermario.director = director; 
+    supermario.genre = "Jeu video";
+    supermario.studio = "Nintendo";
+    films.push(supermario);
+    let narnia = new Film ();
+        narnia.id = 4;
+        narnia.title = "Narnia";
+        narnia.date = 2005;
+        narnia.duration = "2h12";
+        director = new Person();
+        director.name = "Adamson";
+        director.firstname = "Andrew";
+        narnia.director = director;
+        narnia.genre = "Heroic Fantasy";
+        narnia.studio = "Paramount";
+    films.push(narnia);
+    let marioBros = new Film ();
+        marioBros.id = 3;
+        marioBros.title = "marioBros";
+        marioBros.date = 1994;
+        marioBros.duration = "1h24";
+        director = new Person();
+        director.name = "John";
+        director.firstname = "Doe";
+        marioBros.director = director;
+        marioBros.genre = "Nanard";
+        marioBros.studio = "Paramount";
+    films.push(marioBros);
 
     console.log(films);
 
