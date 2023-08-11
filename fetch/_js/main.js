@@ -15,6 +15,15 @@ function getCatFacts(number)
     .then((json) => {
         let catFactContainer = document.querySelector('#cat-fact-list');
         
+        /* Supprimer les faits précédents */
+        /* 1ère possiblité : catFactContainer.innerHTML = ''; */
+        let lis = catFactContainer.querySelectorAll('li');
+        let i = 0;
+        while (i<lis.length) {
+            catFactContainer.removeChild(lis[i]);
+            i++;
+        }
+
         if (Array.isArray(json)) {
             let i = 0;
             while (i < json.length) {
@@ -35,10 +44,6 @@ function getCatFacts(number)
 function onFormSubmit(event)
 {
     event.preventDefault();
-    /* ce qui doit être exécuté à la soumission du formulaire ici :
-- aller lire la valeur dans le champ de formulaire
-- déclencher la fonction getCatFacts en lui passant cette valeur en paramètre
-    */
 
     let number = document.querySelector('#nb-facts').value;
     getCatFacts(number);
@@ -46,7 +51,6 @@ function onFormSubmit(event)
 }
 
 window.addEventListener('load', function() {
-    /* attacher l'eventListener du formulaire */
     document.querySelector('#fact-form').addEventListener('submit', onFormSubmit);
 });
 
